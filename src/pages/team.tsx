@@ -149,14 +149,8 @@ export default function TeamPage(props: PageProps) {
                 <Tab.Content>
                   <Tab.Pane eventKey="team">
                     <Card.Body>
-                      <Row>
-                        <Form.Group
-                          as={Col}
-                          xs={3}
-                          sm={2}
-                          lg={1}
-                          className="mb-3"
-                        >
+                      <Row className="gx-2">
+                        <Form.Group as={Col} xs={2} lg={2} className="mb-3">
                           <Form.Label>Emoji</Form.Label>
                           <Form.Control
                             type="text"
@@ -167,13 +161,7 @@ export default function TeamPage(props: PageProps) {
                           />
                         </Form.Group>
 
-                        <Form.Group
-                          as={Col}
-                          xs={9}
-                          sm={10}
-                          lg={11}
-                          className="mb-3"
-                        >
+                        <Form.Group as={Col} xs={6} lg={7} className="mb-3">
                           <Form.Label>Name</Form.Label>
                           <Form.Control
                             type="text"
@@ -186,9 +174,24 @@ export default function TeamPage(props: PageProps) {
                             }
                           />
                         </Form.Group>
+
+                        <Form.Group as={Col} xs={4} lg={3} className="mb-3">
+                          <Form.Label>Color</Form.Label>
+                          <Form.Control
+                            type="text"
+                            value={team.color}
+                            pattern="#?[0-9a-fA-F]{6}"
+                            onChange={(e) =>
+                              setTeam({
+                                ...team,
+                                color: e.target.value,
+                              })
+                            }
+                          />
+                        </Form.Group>
                       </Row>
 
-                      <Row>
+                      <Row className="gx-2">
                         <Form.Group as={Col}>
                           <Form.Label>Slogan</Form.Label>
                           <Form.Control
