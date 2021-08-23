@@ -4,6 +4,8 @@ import { Team } from "../models/team";
 import PlayerStarsEdit from "./PlayerStarsEdit";
 import ModListEdit from "./ModListEdit";
 import PlayerContentEdit from "./PlayerContentEdit";
+import React from "react";
+import SharePanel from "./SharePanel";
 
 function StarRow(props: {
   name: string;
@@ -95,15 +97,7 @@ export default function PlayerEdit(props: {
           </Tab.Pane>
           <Tab.Pane title="Export" eventKey="export">
             <Card.Body>
-              <Form.Group className="mb-3">
-                <Form.Label>Player data</Form.Label>
-                <Form.Control
-                  className="font-monospace"
-                  as="textarea"
-                  readOnly={true}
-                  value={encodePlayer(props.player)}
-                />
-              </Form.Group>
+              <SharePanel data={encodePlayer(props.player)} />
             </Card.Body>
           </Tab.Pane>
         </Tab.Content>

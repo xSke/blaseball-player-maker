@@ -17,6 +17,7 @@ import PlayerEdit from "../components/PlayerEdit";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { useDebounce } from "use-debounce";
+import SharePanel from "../components/SharePanel";
 
 const defaultTeam: Team = {
   fullName: "Null Team",
@@ -224,15 +225,7 @@ export default function TeamPage(props: PageProps) {
                   </Tab.Pane>
                   <Tab.Pane eventKey="export">
                     <Card.Body>
-                      <Form.Group className="mb-3">
-                        <Form.Label>Team data</Form.Label>
-                        <Form.Control
-                          className="font-monospace"
-                          as="textarea"
-                          readOnly={true}
-                          value={encodeTeam(debouncedTeam)}
-                        />
-                      </Form.Group>
+                      <SharePanel data={encodeTeam(debouncedTeam)} />
                     </Card.Body>
                   </Tab.Pane>
                 </Tab.Content>
