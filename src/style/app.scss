@@ -1,0 +1,12 @@
+@import "./blaseball.scss";
+@import "./blaseball-fixes.scss";
+
+.PlayerCard-Wrapper {
+  background-color: #000;
+  color: #fff;
+  padding: 4rem 0;
+}
+
+.Modal--Static {
+  border: 1px solid white;
+}

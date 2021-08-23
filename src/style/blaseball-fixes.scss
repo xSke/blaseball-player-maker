@@ -1,0 +1,33 @@
+.PlayerCard-Wrapper {
+  .nav-link,
+  .nav-link:hover {
+    color: white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul {
+    margin: 0;
+  }
+
+  a,
+  a:hover {
+    text-decoration: none;
+    color: unset;
+  }
+
+  ul {
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.Player-Info-Stats {
+  margin: 0;
+  padding: 0;
+}
