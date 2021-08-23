@@ -81,7 +81,9 @@ export default function ModListEdit(props: {
                     setSelectedMod((e.target as HTMLSelectElement).value)
                   }
                 >
-                  <option disabled>Select a mod...</option>
+                  <option disabled value="">
+                    Select a mod...
+                  </option>
                   {knownMods.map((mod) => (
                     <option key={mod.id} value={mod.id}>
                       {mod.name}
