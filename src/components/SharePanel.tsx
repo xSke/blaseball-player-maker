@@ -25,7 +25,7 @@ export default function SharePanel(props: { data: string }) {
 
       <div>
         <Button
-          type="primary"
+          variant="primary"
           onClick={async () => {
             setShareLink(null);
 
