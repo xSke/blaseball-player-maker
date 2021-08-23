@@ -1,10 +1,27 @@
 @import "./blaseball.scss";
 @import "./blaseball-fixes.scss";
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+  height: 100%;
+}
+
 .PlayerCard-Wrapper {
   background-color: #000;
   color: #fff;
   padding: 4rem 0;
+
+  overflow-y: auto;
+  height: 100%;
 }
 
 .Modal--Static {

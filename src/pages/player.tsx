@@ -10,7 +10,6 @@ import {
   getBlankPlayer,
   Player,
 } from "../models/player";
-import { v4 } from "uuid";
 import { useDebounce } from "use-debounce";
 
 interface PageProps {
@@ -26,17 +25,24 @@ function PlayerPage(props: PageProps) {
   const [debouncedPlayer] = useDebounce(player, 500);
 
   useEffect(() => {
-    router.replace({
-      pathname: "/player",
-      query: {
-        data: encodePlayer(debouncedPlayer),
+    router.replace(
+      {
+        pathname: "/player",
+        query: {
+          data: encodePlayer(debouncedPlayer),
+        },
       },
-    });
+      undefined,
+      {
+        shallow: true,
+        scroll: false,
+      }
+    );
   }, [debouncedPlayer]);
 
   return (
-    <Container fluid className="gx-0 min-vh-100">
-      <Row className="gx-0 gy-3">
+    <Container fluid className="gx-0 flex-grow-1 d-flex">
+      <Row className="gx-0 gy-3 flex-grow-1">
         <Col lg={6}>
           <PlayerCard player={player} />
         </Col>

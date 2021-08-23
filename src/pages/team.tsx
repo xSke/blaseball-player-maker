@@ -75,12 +75,19 @@ export default function TeamPage(props: PageProps) {
   const router = useRouter();
   const [debouncedTeam] = useDebounce(team, 500);
   useEffect(() => {
-    router.replace({
-      pathname: "/team",
-      query: {
-        data: encodeTeam(debouncedTeam),
+    router.replace(
+      {
+        pathname: "/team",
+        query: {
+          data: encodeTeam(debouncedTeam),
+        },
       },
-    });
+      undefined,
+      {
+        shallow: true,
+        scroll: false,
+      }
+    );
   }, [debouncedTeam]);
 
   const selectedPlayer = selectedPlayerId
@@ -88,7 +95,7 @@ export default function TeamPage(props: PageProps) {
     : null;
 
   return (
-    <Container fluid className="gx-0  min-vh-100">
+    <Container fluid className="gx-0">
       <Row className="gx-0 gy-3">
         <Col lg={6}>
           {selectedPlayer ? (

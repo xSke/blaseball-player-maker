@@ -9,7 +9,7 @@ export default function PlayerCard(props: {
   teamOverride?: Team;
 }) {
   return (
-    <div className="PlayerCard-Wrapper min-vh-100">
+    <div className="PlayerCard-Wrapper">
       <div className="Modal Modal--Generic Modal--Static ModalItem theme-dark">
         <PlayerCardHeader
           player={props.player}
