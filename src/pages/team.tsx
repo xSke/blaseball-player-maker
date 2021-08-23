@@ -150,7 +150,13 @@ export default function TeamPage(props: PageProps) {
                   <Tab.Pane eventKey="team">
                     <Card.Body>
                       <Row className="gx-2">
-                        <Form.Group as={Col} xs={2} lg={2} className="mb-3">
+                        <Form.Group
+                          as={Col}
+                          xs={2}
+                          lg={2}
+                          xl={1}
+                          className="mb-3"
+                        >
                           <Form.Label>Emoji</Form.Label>
                           <Form.Control
                             type="text"
@@ -161,7 +167,13 @@ export default function TeamPage(props: PageProps) {
                           />
                         </Form.Group>
 
-                        <Form.Group as={Col} xs={6} lg={7} className="mb-3">
+                        <Form.Group
+                          as={Col}
+                          xs={6}
+                          lg={7}
+                          xl={9}
+                          className="mb-3"
+                        >
                           <Form.Label>Name</Form.Label>
                           <Form.Control
                             type="text"
@@ -175,7 +187,13 @@ export default function TeamPage(props: PageProps) {
                           />
                         </Form.Group>
 
-                        <Form.Group as={Col} xs={4} lg={3} className="mb-3">
+                        <Form.Group
+                          as={Col}
+                          xs={4}
+                          lg={3}
+                          xl={2}
+                          className="mb-3"
+                        >
                           <Form.Label>Color</Form.Label>
                           <Form.Control
                             type="text"
