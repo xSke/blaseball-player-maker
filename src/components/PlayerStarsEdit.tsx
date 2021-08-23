@@ -36,7 +36,7 @@ export default function PlayerStarsEdit(props: {
           <Form.Control
             type="number"
             value={props.stars.item}
-            min={-props.stars.base}
+            min={-(props.stars.base || 0)}
             step={0.1}
             onChange={(e) =>
               props.setStars({
