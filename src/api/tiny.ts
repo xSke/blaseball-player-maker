@@ -8,5 +8,5 @@ export async function shortenUrl(url: string): Promise<string> {
   });
 
   const data = await resp.text();
-  return data;
+  return "https://tiny.sibr.dev/" + data;
 }
