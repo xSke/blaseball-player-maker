@@ -3,13 +3,15 @@ import { Team } from "../models/team";
 import TeamCardHeader from "./TeamCardHeader";
 import { Tabs, Tab, Nav } from "react-bootstrap";
 import TeamRoster from "./TeamRoster";
+import React from "react";
+import EditButton from "./EditButton";
 
 export default function TeamCard(props: {
   team: Team;
   onPlayerSelected?: (id: string) => void;
 }) {
   return (
-    <div className="PlayerCard-Wrapper min-vh-100">
+    <div className="PlayerCard-Wrapper">
       <div className="Modal Modal--Generic Modal--Static ModalItem theme-dark">
         <TeamCardHeader team={props.team} />
 
@@ -30,7 +32,10 @@ export default function TeamCard(props: {
           </Nav>
           <Tab.Content>
             <Tab.Pane eventKey="roster">
-              <TeamRoster team={props.team} />
+              <TeamRoster
+                onPlayerSelected={props.onPlayerSelected}
+                team={props.team}
+              />
             </Tab.Pane>
             <Tab.Pane eventKey="info">TODO</Tab.Pane>
             <Tab.Pane eventKey="ballpark">TODO</Tab.Pane>

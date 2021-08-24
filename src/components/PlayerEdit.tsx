@@ -97,7 +97,11 @@ export default function PlayerEdit(props: {
           </Tab.Pane>
           <Tab.Pane title="Export" eventKey="export">
             <Card.Body>
-              <SharePanel data={encodePlayer(props.player)} />
+              <SharePanel
+                pathPrefix="/player?code="
+                tinyPrefix="/player?data="
+                data={encodePlayer(props.player)}
+              />
             </Card.Body>
           </Tab.Pane>
         </Tab.Content>

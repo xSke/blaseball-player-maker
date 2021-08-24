@@ -3,6 +3,7 @@ import PlayerCardContent from "./PlayerCardContent";
 import PlayerCardHeader from "./PlayerCardHeader";
 import Modification from "./Modification";
 import { Team } from "../models/team";
+import React from "react";
 
 export default function PlayerCard(props: {
   player: Player;
@@ -15,7 +16,6 @@ export default function PlayerCard(props: {
           player={props.player}
           teamOverride={props.teamOverride}
         />
-
         <div className="ModalTabs nav nav-tabs">
           <div className="nav-item">
             <a className="nav-link active">Info</a>
@@ -29,7 +29,6 @@ export default function PlayerCard(props: {
             <a className="nav-link">Feed</a>
           </div>
         </div>
-
         <div className="tab-content">
           <div className="fade tab-pane active show">
             {props.player.mods.length ? (

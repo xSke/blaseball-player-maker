@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import React from "react";
-import SiteNavbar from "../components/SiteNavbar";
 
 class MyDocument extends Document {
   render() {
@@ -20,7 +19,6 @@ class MyDocument extends Document {
           />
         </Head>
         <body className="theme-dark">
-          <SiteNavbar />
           <Main />
           <NextScript />
         </body>

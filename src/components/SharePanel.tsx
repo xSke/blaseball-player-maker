@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { shortenUrl } from "../api/tiny";
 
-export default function SharePanel(props: { data: string }) {
-  const router = useRouter();
+export default function SharePanel(props: {
+  pathPrefix: string;
+  tinyPrefix: string;
+  data: string;
+}) {
   const [shareLink, setShareLink] = useState<string | null>();
 
   useEffect(() => {
@@ -29,8 +32,12 @@ export default function SharePanel(props: { data: string }) {
           onClick={async () => {
             setShareLink(null);
 
-            const url = "https://insplect.netlify.app" + router.asPath;
-            const shortened = await shortenUrl(url);
+            const url = `https://insplect.netlify.app${
+              props.tinyPrefix
+            }${encodeURIComponent(props.data)}`;
+
+            const code = await shortenUrl(url);
+            const shortened = `https://insplect.netlify.app${props.pathPrefix}${code}`;
             setShareLink(shortened);
           }}
         >

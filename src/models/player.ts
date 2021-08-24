@@ -97,7 +97,7 @@ export function encodePlayer(player: Player): string {
   return encoded.replace(/\//g, "_").replace(/\+/g, "-");
 }
 
-export function decodePlayer(data: String): string {
+export function decodePlayer(data: string): Player {
   const buf = Buffer.from(data.replace(/_/g, "/").replace(/-/g, "+"), "base64");
   const json = buf.toString("utf-8");
   return JSON.parse(json);

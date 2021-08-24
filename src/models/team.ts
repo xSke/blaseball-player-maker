@@ -54,8 +54,56 @@ export function encodeTeam(team: Team): string {
   return encoded.replace(/\//g, "_").replace(/\+/g, "-");
 }
 
-export function decodeTeam(data: String): string {
+export function decodeTeam(data: string): string {
   const buf = Buffer.from(data.replace(/_/g, "/").replace(/-/g, "+"), "base64");
   const json = buf.toString("utf-8");
   return JSON.parse(json);
+}
+
+export function getBlankTeam(): Team {
+  return {
+    fullName: "Null Team",
+    color: "#a8a8a8",
+    emoji: "❓",
+    slogan: "Null Slogan",
+    tarot: "Null Tarot",
+
+    mods: [],
+    ballpark: {
+      name: "",
+      nickname: "",
+      birds: "",
+      balloons: "",
+      floodBalloons: "",
+
+      grandiosity: 0.5,
+      fortification: 0.5,
+      obtuseness: 0.5,
+      ominousness: 0.5,
+      inconvenience: 0.5,
+      viscosity: 0.5,
+      forwardness: 0.5,
+      mysticism: 0.5,
+      elongation: 0.5,
+      filthiness: 0.5,
+      luxuriousness: 0.5,
+      hype: 0.5,
+    },
+
+    players: {},
+
+    lineup: [],
+    rotation: [],
+    shadows: [],
+
+    wins: "",
+    record: "",
+    runs: "",
+    eDensity: "",
+    tiebreaker: "",
+    championships: 1,
+    underchampionships: 0,
+    evolved: "",
+    netShame: "",
+  };
 }

@@ -6,9 +6,15 @@ import PlayerVibes from "./PlayerVibes";
 function TeamPlayerLine(props: {
   player: Player;
   starType: "battingStars" | "pitchingStars";
+  onPlayerSelected?: (id: string) => void;
 }) {
   return (
-    <a className="Team-Player-Line">
+    <a
+      className="Team-Player-Line"
+      onClick={(e) => {
+        props.onPlayerSelected && props.onPlayerSelected(props.player.id);
+      }}
+    >
       <div className="Team-Player-Header">{props.player.name}</div>
       <div className="Team-Player-Vibe">
         <PlayerVibes
@@ -23,7 +29,10 @@ function TeamPlayerLine(props: {
     </a>
   );
 }
-export default function TeamRoster(props: { team: Team }) {
+export default function TeamRoster(props: {
+  team: Team;
+  onPlayerSelected?: (id: string) => void;
+}) {
   return (
     <div className="ModalItem-Content ModalItem-Content-WithAttributes">
       {props.team.lineup.length ? (
@@ -35,6 +44,7 @@ export default function TeamRoster(props: { team: Team }) {
               <TeamPlayerLine
                 key={i}
                 player={props.team.players[p]}
+                onPlayerSelected={props.onPlayerSelected}
                 starType="battingStars"
               />
             ))}
@@ -51,6 +61,7 @@ export default function TeamRoster(props: { team: Team }) {
               <TeamPlayerLine
                 key={i}
                 player={props.team.players[p]}
+                onPlayerSelected={props.onPlayerSelected}
                 starType="pitchingStars"
               />
             ))}
@@ -67,6 +78,7 @@ export default function TeamRoster(props: { team: Team }) {
               <TeamPlayerLine
                 key={i}
                 player={props.team.players[p]}
+                onPlayerSelected={props.onPlayerSelected}
                 starType="battingStars"
               />
             ))}

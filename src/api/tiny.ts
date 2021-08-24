@@ -8,5 +8,11 @@ export async function shortenUrl(url: string): Promise<string> {
   });
 
   const data = await resp.text();
-  return "https://tiny.sibr.dev/" + data;
+  return data;
+}
+
+export async function lookupUrl(code: string): Promise<string | null> {
+  const resp = await fetch("https://tiny.sibr.dev/lookup/" + code);
+  if (resp.status !== 200) return null;
+  return await resp.text();
 }

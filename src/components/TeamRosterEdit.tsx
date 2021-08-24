@@ -2,17 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { Card, Form, Button, ButtonGroup, Row, Col } from "react-bootstrap";
 import { Team } from "../models/team";
 import PlayerStarsEdit from "./PlayerStarsEdit";
-import {
-  FaEdit,
-  FaAngleUp,
-  FaAngleDown,
-  FaArrowUp,
-  FaArrowDown,
-  FaTrash,
-  FaPen,
-  FaTimes,
-  FaPlus,
-} from "react-icons/fa";
+import { FaArrowUp, FaArrowDown, FaPen, FaTimes } from "react-icons/fa";
 import { getBlankPlayer, Player } from "../models/player";
 
 function TeamRosterSectionEdit(props: {
@@ -146,9 +136,8 @@ function TeamRosterSectionEdit(props: {
     </div>
   );
 }
-// function PlayerEditRow(props: { player: Player })
 
-export function TeamRosterEdit(props: {
+export default function TeamRosterEdit(props: {
   team: Team;
   setTeam: Dispatch<SetStateAction<Team>>;
   onPlayerEdit: (playerId: string) => void;
