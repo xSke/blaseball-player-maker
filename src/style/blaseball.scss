@@ -226,6 +226,24 @@
   font-family: "Lora", "Courier New", monospace, serif;
 }
 
+.ModalItem-Icon {
+  width: 22px;
+  height: 22px;
+}
+.ModalItem .tab-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.ModalItem-Content {
+  padding: 20px 0;
+}
+.ModalItem-Content-WithAttributes {
+  padding: 73px 0 20px;
+}
+.ModalItem-Scroll {
+  overflow-y: scroll;
+}
+
 .ModalItem-Name {
   font-family: "Lora", "Courier New", monospace, serif;
   font-size: 24px;
