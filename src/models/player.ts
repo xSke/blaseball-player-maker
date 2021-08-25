@@ -1,5 +1,67 @@
 import { Modification } from "./mod";
 import { v4 } from "uuid";
+import { getRandomName, getRandomRitual } from "../data/names";
+
+const coffeeStyles = [
+  "Black",
+  "Light & Sweet",
+  "Macchiato",
+  "Cream & Sugar",
+  "Cold Brew",
+  "Flat White",
+  "Americano",
+  "Coffee?",
+  "Heavy Foam",
+  "Latte",
+  "Decaf",
+  "Milk Substitute",
+  "Plenty of Sugar",
+  "Anything",
+];
+
+const bloodTypes = [
+  "A",
+  "AAA",
+  "AA",
+  "Acidic",
+  "Basic",
+  "O",
+  "O No",
+  "H₂O",
+  "Electric",
+  "Love",
+  "Fire",
+  "Psychic",
+  "Grass",
+];
+
+const vibeTexts = {
+  [-3]: "Honestly Terrible",
+  [-2]: "Far Less Than Ideal",
+  [-1]: "Less Than Ideal",
+  [0]: "Neutral",
+  [1]: "Quality",
+  [2]: "Excellent",
+  [3]: "Most Excellent",
+};
+
+function generateSoulscream(soul: number): string {
+  const letters = "AEIOUXHAEI";
+
+  let str = "";
+  for (let s = 0; s < soul; s++) {
+    let chunk = "";
+    for (let c = 0; c < 5; c++) {
+      chunk += letters[Math.floor(Math.random() * letters.length)];
+    }
+
+    str += chunk;
+    str += chunk;
+    str += chunk[0];
+  }
+
+  return str;
+}
 
 export interface Player {
   id: string;
@@ -45,9 +107,12 @@ export interface PlayerStars {
 }
 
 export function getBlankPlayer(): Player {
+  const vibes = Math.floor(Math.random() * 7) - 3;
+  const soul = Math.floor(Math.random() * 8) + 2;
+
   return {
     id: v4(),
-    name: "New Player",
+    name: getRandomName(),
     team: {
       fullName: "Null Team",
       color: "#a8a8a8",
@@ -55,8 +120,8 @@ export function getBlankPlayer(): Player {
     },
     vibes: {
       enabled: true,
-      arrows: 0,
-      label: "Neutral",
+      arrows: vibes,
+      label: vibeTexts[vibes],
     },
     battingStars: {
       base: parseFloat((Math.random() * 3 + 1).toFixed(1)),
@@ -80,12 +145,12 @@ export function getBlankPlayer(): Player {
     },
     evolutionGlow: false,
     evolution: "Base",
-    peanutAllergy: "No",
-    ritual: "Unknown",
-    coffee: "Black",
-    blood: "A",
+    peanutAllergy: Math.random() < 0.5 ? "Yes" : "No",
+    ritual: getRandomRitual(),
+    coffee: coffeeStyles[Math.floor(Math.random() * coffeeStyles.length)],
+    blood: bloodTypes[Math.floor(Math.random() * bloodTypes.length)],
     fate: Math.floor(Math.random() * 100).toString(),
-    soulscream: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    soulscream: generateSoulscream(soul),
     mods: [],
   };
 }
