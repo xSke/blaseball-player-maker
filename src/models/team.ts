@@ -26,6 +26,8 @@ export interface Team {
   underchampionships: number;
   evolved: string;
   netShame: string;
+
+  notes: string;
 }
 
 export interface Ballpark {
@@ -105,5 +107,7 @@ export function getBlankTeam(): Team {
     underchampionships: 0,
     evolved: "",
     netShame: "",
+
+    notes: "",
   };
 }

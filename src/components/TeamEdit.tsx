@@ -9,6 +9,7 @@ import SharePanel from "./SharePanel";
 import TeamRosterEdit from "./TeamRosterEdit";
 import TeamInfoEdit from "./TeamInfoEdit";
 import ModListEdit from "./ModListEdit";
+import NotesPanel from "./NotesPanel";
 
 export default function TeamEdit(props: {
   team: Team;
@@ -77,6 +78,9 @@ export default function TeamEdit(props: {
                     <Nav.Link eventKey="mods">Mods</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
+                    <Nav.Link eventKey="notes">Notes</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
                     <Nav.Link eventKey="export">Export</Nav.Link>
                   </Nav.Item>
                 </Nav>
@@ -101,7 +105,14 @@ export default function TeamEdit(props: {
                     setMods={(m) => setTeam({ ...team, mods: m })}
                   />
                 </Tab.Pane>
-
+                <Tab.Pane eventKey="notes">
+                  <Card.Body>
+                    <NotesPanel
+                      notes={team.notes}
+                      setNotes={(n) => setTeam({ ...team, notes: n })}
+                    />
+                  </Card.Body>
+                </Tab.Pane>
                 <Tab.Pane eventKey="export">
                   <Card.Body>
                     <SharePanel

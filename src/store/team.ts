@@ -49,6 +49,8 @@ const initialState: TeamState = {
     underchampionships: 0,
     evolved: "",
     netShame: "",
+
+    notes: "",
   },
 };
 

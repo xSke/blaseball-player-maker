@@ -6,6 +6,7 @@ import ModListEdit from "./ModListEdit";
 import PlayerContentEdit from "./PlayerContentEdit";
 import React from "react";
 import SharePanel from "./SharePanel";
+import NotesPanel from "./NotesPanel";
 
 function StarRow(props: {
   name: string;
@@ -42,6 +43,9 @@ export default function PlayerEdit(props: {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="mods">Mods</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="notes">Notes</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="export">Export</Nav.Link>
@@ -98,6 +102,14 @@ export default function PlayerEdit(props: {
               mods={props.player.mods}
               setMods={(m) => props.setPlayer({ ...props.player, mods: m })}
             />
+          </Tab.Pane>
+          <Tab.Pane title="Notes" eventKey="notes">
+            <Card.Body>
+              <NotesPanel
+                notes={props.player.notes}
+                setNotes={(n) => props.setPlayer({ ...props.player, notes: n })}
+              />
+            </Card.Body>
           </Tab.Pane>
           <Tab.Pane title="Export" eventKey="export">
             <Card.Body>

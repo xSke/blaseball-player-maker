@@ -25,6 +25,8 @@ export interface Player {
   soulscream: string;
 
   mods: Modification[];
+
+  notes: string;
 }
 
 export interface PlayerVibes {
@@ -70,6 +72,8 @@ export function getBlankPlayer(): Player {
     fate: generate.fate(),
     soulscream: soulscream,
     mods: [],
+
+    notes: "",
   };
 }
 
