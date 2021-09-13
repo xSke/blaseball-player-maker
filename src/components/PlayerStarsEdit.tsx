@@ -6,13 +6,14 @@ import { BsStarFill, BsStar } from "react-icons/bs";
 export default function PlayerStarsEdit(props: {
   stars: PlayerStars;
   setStars: (newStars: PlayerStars) => void;
+  includeEvo?: boolean;
 }) {
   return (
     <Row className="gx-2">
-      <Col sm={6}>
+      <Col>
         <InputGroup>
           <InputGroup.Text>
-            <BsStarFill />
+            <BsStarFill aria-label="Base stars" />
           </InputGroup.Text>
           <Form.Control
             type="number"
@@ -28,10 +29,10 @@ export default function PlayerStarsEdit(props: {
           />
         </InputGroup>
       </Col>
-      <Col sm={6}>
+      <Col>
         <InputGroup>
           <InputGroup.Text>
-            <BsStar />
+            <BsStar aria-label="Item stars" />
           </InputGroup.Text>
           <Form.Control
             type="number"
@@ -47,23 +48,27 @@ export default function PlayerStarsEdit(props: {
           />
         </InputGroup>
       </Col>
-      {/* <Col sm={4}>
-        <InputGroup>
-          <InputGroup.Text>Evo</InputGroup.Text>
-          <Form.Control
-            type="number"
-            value={props.stars.evolution}
-            min={0}
-            step={1}
-            onChange={(e) =>
-              props.setStars({
-                ...props.stars,
-                evolution: parseFloat(e.target.value),
-              })
-            }
-          />
-        </InputGroup>
-      </Col> */}
+      {props.includeEvo && (
+        <Col>
+          <InputGroup>
+            <InputGroup.Text>
+              <BsStarFill className="EvoStar" aria-label="Evolution stars" />
+            </InputGroup.Text>
+            <Form.Control
+              type="number"
+              value={props.stars.evolution}
+              min={0}
+              step={1}
+              onChange={(e) =>
+                props.setStars({
+                  ...props.stars,
+                  evolution: parseFloat(e.target.value),
+                })
+              }
+            />
+          </InputGroup>
+        </Col>
+      )}
     </Row>
   );
 }

@@ -15,7 +15,11 @@ function StarRow(props: {
   return (
     <Form.Group className="mb-3">
       <Form.Label>{props.name}</Form.Label>
-      <PlayerStarsEdit stars={props.stars} setStars={props.setStars} />
+      <PlayerStarsEdit
+        stars={props.stars}
+        setStars={props.setStars}
+        includeEvo={true}
+      />
     </Form.Group>
   );
 }
