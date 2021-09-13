@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { getRandomName } from "../data/names";
+import { generateRandomName } from "../data/names";
 
 function generateNames(): string[] {
   const names = [];
   for (let i = 0; i < 6; i++) {
-    names.push(getRandomName());
+    names.push(generateRandomName());
   }
   return names;
 }

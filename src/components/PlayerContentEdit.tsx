@@ -1,12 +1,20 @@
-import React from "react";
-import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { Player } from "../models/player";
+import React, { Dispatch, SetStateAction } from "react";
+import { Form, Row, Col, InputGroup, Button } from "react-bootstrap";
+import {
+  generateBloodType,
+  generateCoffeeStyle,
+  generateFate,
+  generateSoulAndScream,
+  Player,
+} from "../models/player";
 import { Team } from "../models/team";
+import { BsArrowClockwise } from "react-icons/bs";
+import { generateRandomName, generateRandomRitual } from "../data/names";
 
 export default function PlayerContentEdit(props: {
   player: Player;
   teamOverride?: Team;
-  setPlayer: (newPlayer: Player) => void;
+  setPlayer: Dispatch<SetStateAction<Player>>;
 }) {
   const player = props.player;
   const setPlayer = props.setPlayer;
@@ -23,11 +31,24 @@ export default function PlayerContentEdit(props: {
     <Form>
       <Form.Group className="mb-3">
         <Form.Label>Name</Form.Label>
-        <Form.Control
-          type="text"
-          value={player.name}
-          onChange={(e) => setPlayer({ ...props.player, name: e.target.value })}
-        />
+        <InputGroup>
+          <Form.Control
+            type="text"
+            value={player.name}
+            onChange={(e) =>
+              setPlayer({ ...props.player, name: e.target.value })
+            }
+          />
+          <Button
+            variant="outline-secondary"
+            onClick={() => {
+              setPlayer((p) => ({ ...p, name: generateRandomName() }));
+            }}
+            aria-label="Reroll name"
+          >
+            <BsArrowClockwise />
+          </Button>
+        </InputGroup>
       </Form.Group>
 
       <Row className="gx-2">
@@ -163,60 +184,116 @@ export default function PlayerContentEdit(props: {
 
         <Form.Group as={Col} md={6} className="mb-3">
           <Form.Label>Fate</Form.Label>
-          <Form.Control
-            type="text"
-            value={player.fate}
-            onChange={(e) =>
-              setPlayer({ ...props.player, fate: e.target.value })
-            }
-          />
+          <InputGroup>
+            <Form.Control
+              type="text"
+              value={player.fate}
+              onChange={(e) =>
+                setPlayer({ ...props.player, fate: e.target.value })
+              }
+            />
+            <Button
+              variant="outline-secondary"
+              onClick={() => {
+                setPlayer((p) => ({ ...p, fate: generateFate() }));
+              }}
+              aria-label="Reroll fate"
+            >
+              <BsArrowClockwise />
+            </Button>
+          </InputGroup>
         </Form.Group>
       </Row>
 
       <Row>
         <Form.Group as={Col} md={6} className="mb-3">
           <Form.Label>Blood Type</Form.Label>
-          <Form.Control
-            type="text"
-            value={player.blood}
-            onChange={(e) =>
-              setPlayer({ ...props.player, blood: e.target.value })
-            }
-          />
+          <InputGroup>
+            <Form.Control
+              type="text"
+              value={player.blood}
+              onChange={(e) =>
+                setPlayer({ ...props.player, blood: e.target.value })
+              }
+            />
+            <Button
+              variant="outline-secondary"
+              onClick={() => {
+                setPlayer((p) => ({ ...p, blood: generateBloodType() }));
+              }}
+              aria-label="Reroll blood type"
+            >
+              <BsArrowClockwise />
+            </Button>
+          </InputGroup>
         </Form.Group>
 
         <Form.Group as={Col} md={6} className="mb-3">
           <Form.Label>Coffee Style</Form.Label>
-          <Form.Control
-            type="text"
-            value={player.coffee}
-            onChange={(e) =>
-              setPlayer({ ...props.player, coffee: e.target.value })
-            }
-          />
+          <InputGroup>
+            <Form.Control
+              type="text"
+              value={player.coffee}
+              onChange={(e) =>
+                setPlayer({ ...props.player, coffee: e.target.value })
+              }
+            />
+            <Button
+              variant="outline-secondary"
+              onClick={() => {
+                setPlayer((p) => ({ ...p, coffee: generateCoffeeStyle() }));
+              }}
+              aria-label="Reroll coffee style"
+            >
+              <BsArrowClockwise />
+            </Button>
+          </InputGroup>
         </Form.Group>
       </Row>
 
       <Form.Group className="mb-3">
         <Form.Label>Pregame Ritual</Form.Label>
-        <Form.Control
-          type="text"
-          value={player.ritual}
-          onChange={(e) =>
-            setPlayer({ ...props.player, ritual: e.target.value })
-          }
-        />
+        <InputGroup>
+          <Form.Control
+            type="text"
+            value={player.ritual}
+            onChange={(e) =>
+              setPlayer({ ...props.player, ritual: e.target.value })
+            }
+          />
+          <Button
+            variant="outline-secondary"
+            onClick={() => {
+              setPlayer((p) => ({ ...p, ritual: generateRandomRitual() }));
+            }}
+            aria-label="Reroll ritual"
+          >
+            <BsArrowClockwise />
+          </Button>
+        </InputGroup>
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Soulscream</Form.Label>
-        <Form.Control
-          type="text"
-          value={player.soulscream}
-          onChange={(e) =>
-            setPlayer({ ...props.player, soulscream: e.target.value })
-          }
-        />
+        <InputGroup>
+          <Form.Control
+            type="text"
+            value={player.soulscream}
+            onChange={(e) =>
+              setPlayer({ ...props.player, soulscream: e.target.value })
+            }
+          />
+          <Button
+            variant="outline-secondary"
+            onClick={() => {
+              const { soul, soulscream } = generateSoulAndScream();
+              setPlayer((p) => ({ ...p, soulscream }));
+            }}
+            aria-label="Reroll soulscream"
+          >
+            <BsArrowClockwise />
+          </Button>
+        </InputGroup>
       </Form.Group>
     </Form>
   );

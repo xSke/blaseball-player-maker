@@ -1,6 +1,6 @@
 import { Modification } from "./mod";
 import { v4 } from "uuid";
-import { getRandomName, getRandomRitual } from "../data/names";
+import { generateRandomName, generateRandomRitual } from "../data/names";
 
 const coffeeStyles = [
   "Black",
@@ -45,7 +45,24 @@ const vibeTexts = {
   [3]: "Most Excellent",
 };
 
-function generateSoulscream(soul: number): string {
+export function generateBloodType(): string {
+  return bloodTypes[Math.floor(Math.random() * bloodTypes.length)];
+}
+
+export function generateCoffeeStyle(): string {
+  return coffeeStyles[Math.floor(Math.random() * coffeeStyles.length)];
+}
+
+export function generateFate(): string {
+  return Math.floor(Math.random() * 100).toString();
+}
+
+export function generateSoulAndScream(): { soul: number; soulscream: string } {
+  const soul = Math.floor(Math.random() * 8) + 2;
+  return { soul, soulscream: generateSoulscream(soul) };
+}
+
+export function generateSoulscream(soul: number): string {
   const letters = "AEIOUXHAEI";
 
   let str = "";
@@ -55,12 +72,21 @@ function generateSoulscream(soul: number): string {
       chunk += letters[Math.floor(Math.random() * letters.length)];
     }
 
+    // 5-5-1 pattern
     str += chunk;
     str += chunk;
     str += chunk[0];
   }
 
   return str;
+}
+
+export function generateStars(): PlayerStars {
+  return {
+    base: parseFloat((Math.random() * 3 + 1).toFixed(1)),
+    evolution: 0,
+    item: parseFloat((Math.random() * 2 - 1).toFixed(1)),
+  };
 }
 
 export interface Player {
@@ -108,11 +134,11 @@ export interface PlayerStars {
 
 export function getBlankPlayer(): Player {
   const vibes = Math.floor(Math.random() * 7) - 3;
-  const soul = Math.floor(Math.random() * 8) + 2;
+  const { soul, soulscream } = generateSoulAndScream();
 
   return {
     id: v4(),
-    name: getRandomName(),
+    name: generateRandomName(),
     team: {
       fullName: "Null Team",
       color: "#a8a8a8",
@@ -123,33 +149,17 @@ export function getBlankPlayer(): Player {
       arrows: vibes,
       label: vibeTexts[vibes],
     },
-    battingStars: {
-      base: parseFloat((Math.random() * 3 + 1).toFixed(1)),
-      evolution: 0,
-      item: parseFloat((Math.random() * 2 - 1).toFixed(1)),
-    },
-    pitchingStars: {
-      base: parseFloat((Math.random() * 3 + 1).toFixed(1)),
-      evolution: 0,
-      item: parseFloat((Math.random() * 2 - 1).toFixed(1)),
-    },
-    baserunningStars: {
-      base: parseFloat((Math.random() * 3 + 1).toFixed(1)),
-      evolution: 0,
-      item: parseFloat((Math.random() * 2 - 1).toFixed(1)),
-    },
-    defenseStars: {
-      base: parseFloat((Math.random() * 3 + 1).toFixed(1)),
-      evolution: 0,
-      item: parseFloat((Math.random() * 2 - 1).toFixed(1)),
-    },
+    battingStars: generateStars(),
+    pitchingStars: generateStars(),
+    baserunningStars: generateStars(),
+    defenseStars: generateStars(),
     evolutionGlow: false,
     evolution: "Base",
     peanutAllergy: Math.random() < 0.5 ? "Yes" : "No",
-    ritual: getRandomRitual(),
-    coffee: coffeeStyles[Math.floor(Math.random() * coffeeStyles.length)],
-    blood: bloodTypes[Math.floor(Math.random() * bloodTypes.length)],
-    fate: Math.floor(Math.random() * 100).toString(),
+    ritual: generateRandomRitual(),
+    coffee: generateCoffeeStyle(),
+    blood: generateBloodType(),
+    fate: generateFate(),
     soulscream: generateSoulscream(soul),
     mods: [],
   };
