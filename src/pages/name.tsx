@@ -5,7 +5,7 @@ import * as generate from "../models/generate";
 function generateNames(): string[] {
   const names = [];
   for (let i = 0; i < 6; i++) {
-    names.push(generate.name());
+    names.push(generate.name(false));
   }
   return names;
 }

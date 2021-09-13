@@ -9,13 +9,13 @@ const coffeeStyles = [
   "Cold Brew",
   "Flat White",
   "Americano",
-  "Coffee?",
+  "Espresso", // Coffee?
   "Heavy Foam",
   "Latte",
   "Decaf",
   "Milk Substitute",
   "Plenty of Sugar",
-  "Anything",
+  "Anything", // (this one is technically not possible iirc? leaving it in anyway lol)
 ];
 
 const bloodTypes = [
@@ -118,10 +118,9 @@ export function lastName(): string {
   ];
 }
 
-// this is such an obscure reference lmao
 const specials = [
   "\u{1F9FF} standard emojis work as well", // standy <3
-  "Gun Bong",
+  "Gun Bong", // (do not lore)
 ];
 
 export function name(rollSpecials = true): string {
