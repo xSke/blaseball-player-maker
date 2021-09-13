@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import { Player } from "../models/player";
 import { Team } from "../models/team";
@@ -8,7 +8,7 @@ import * as generate from "../models/generate";
 export default function PlayerContentEdit(props: {
   player: Player;
   teamOverride?: Team;
-  setPlayer: Dispatch<SetStateAction<Player>>;
+  setPlayer: (newPlayer: Player) => void;
 }) {
   const player = props.player;
   const setPlayer = props.setPlayer;
@@ -36,7 +36,7 @@ export default function PlayerContentEdit(props: {
           <Button
             variant="outline-secondary"
             onClick={() => {
-              setPlayer((p) => ({ ...p, name: generate.name() }));
+              setPlayer({ ...props.player, name: generate.name() });
             }}
             aria-label="Reroll name"
           >
@@ -189,7 +189,7 @@ export default function PlayerContentEdit(props: {
             <Button
               variant="outline-secondary"
               onClick={() => {
-                setPlayer((p) => ({ ...p, fate: generate.fate() }));
+                setPlayer({ ...props.player, fate: generate.fate() });
               }}
               aria-label="Reroll fate"
             >
@@ -213,7 +213,7 @@ export default function PlayerContentEdit(props: {
             <Button
               variant="outline-secondary"
               onClick={() => {
-                setPlayer((p) => ({ ...p, blood: generate.blood() }));
+                setPlayer({ ...props.player, blood: generate.blood() });
               }}
               aria-label="Reroll blood type"
             >
@@ -235,7 +235,7 @@ export default function PlayerContentEdit(props: {
             <Button
               variant="outline-secondary"
               onClick={() => {
-                setPlayer((p) => ({ ...p, coffee: generate.coffee() }));
+                setPlayer({ ...props.player, coffee: generate.coffee() });
               }}
               aria-label="Reroll coffee style"
             >
@@ -258,7 +258,7 @@ export default function PlayerContentEdit(props: {
           <Button
             variant="outline-secondary"
             onClick={() => {
-              setPlayer((p) => ({ ...p, ritual: generate.ritual() }));
+              setPlayer({ ...props.player, ritual: generate.ritual() });
             }}
             aria-label="Reroll ritual"
           >
@@ -281,7 +281,7 @@ export default function PlayerContentEdit(props: {
             variant="outline-secondary"
             onClick={() => {
               const { soul, soulscream } = generate.soulAndScream();
-              setPlayer((p) => ({ ...p, soulscream }));
+              setPlayer({ ...props.player, soulscream });
             }}
             aria-label="Reroll soulscream"
           >
