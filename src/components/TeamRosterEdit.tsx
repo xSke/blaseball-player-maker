@@ -1,9 +1,19 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Card, Form, Button, ButtonGroup, Row, Col } from "react-bootstrap";
+import {
+  Card,
+  Form,
+  Button,
+  ButtonGroup,
+  Row,
+  Col,
+  InputGroup,
+} from "react-bootstrap";
 import { Team } from "../models/team";
 import PlayerStarsEdit from "./PlayerStarsEdit";
 import { FaArrowUp, FaArrowDown, FaPen, FaTimes } from "react-icons/fa";
+import { BsArrowClockwise } from "react-icons/bs";
 import { getBlankPlayer, Player } from "../models/player";
+import * as generate from "../models/generate";
 
 function TeamRosterSectionEdit(props: {
   name: string;
@@ -80,17 +90,32 @@ function TeamRosterSectionEdit(props: {
             </Col>
             <Col md={6}>
               <Form.Group>
-                <Form.Control
-                  type="text"
-                  value={player.name}
-                  onChange={(e) => {
-                    const newPlayer = {
-                      ...player,
-                      name: e.target.value,
-                    };
-                    props.setPlayer(playerId, newPlayer);
-                  }}
-                />
+                <InputGroup>
+                  <Form.Control
+                    type="text"
+                    value={player.name}
+                    onChange={(e) => {
+                      const newPlayer = {
+                        ...player,
+                        name: e.target.value,
+                      };
+                      props.setPlayer(playerId, newPlayer);
+                    }}
+                  />
+                  <Button
+                    variant="outline-secondary"
+                    onClick={() => {
+                      const newPlayer = {
+                        ...player,
+                        name: generate.name(),
+                      };
+                      props.setPlayer(playerId, newPlayer);
+                    }}
+                    aria-label="Reroll name"
+                  >
+                    <BsArrowClockwise />
+                  </Button>
+                </InputGroup>
               </Form.Group>
             </Col>
             <Col>
