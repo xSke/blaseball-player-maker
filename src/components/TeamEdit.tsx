@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { Row, Col, Button, Tab, Card, Form, Nav } from "react-bootstrap";
+import { Row, Col, Button, Tab, Card, Nav } from "react-bootstrap";
 import { useDebounce } from "use-debounce";
 import { encodeTeam, Team } from "../models/team";
 import PlayerCard from "./PlayerCard";
@@ -8,6 +8,7 @@ import PlayerEdit from "./PlayerEdit";
 import SharePanel from "./SharePanel";
 import TeamRosterEdit from "./TeamRosterEdit";
 import TeamInfoEdit from "./TeamInfoEdit";
+import ModListEdit from "./ModListEdit";
 
 export default function TeamEdit(props: {
   team: Team;
@@ -73,6 +74,9 @@ export default function TeamEdit(props: {
                     <Nav.Link eventKey="ballpark">Ballpark</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
+                    <Nav.Link eventKey="mods">Mods</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
                     <Nav.Link eventKey="export">Export</Nav.Link>
                   </Nav.Item>
                 </Nav>
@@ -91,6 +95,13 @@ export default function TeamEdit(props: {
                 <Tab.Pane eventKey="ballpark">
                   <Card.Body>todo</Card.Body>
                 </Tab.Pane>
+                <Tab.Pane eventKey="mods">
+                  <ModListEdit
+                    mods={team.mods}
+                    setMods={(m) => setTeam({ ...team, mods: m })}
+                  />
+                </Tab.Pane>
+
                 <Tab.Pane eventKey="export">
                   <Card.Body>
                     <SharePanel

@@ -1,10 +1,23 @@
-import { Player } from "../models/player";
 import { Team } from "../models/team";
 import TeamCardHeader from "./TeamCardHeader";
-import { Tabs, Tab, Nav } from "react-bootstrap";
+import { Tab, Nav } from "react-bootstrap";
 import TeamRoster from "./TeamRoster";
 import React from "react";
-import EditButton from "./EditButton";
+import { Modification as ModModel } from "../models/mod";
+import Modification from "./Modification";
+
+function TeamMods(props: { mods: ModModel[] }) {
+  if (!props.mods.length) return null;
+  return (
+    <div className="ModalItem-Attributes">
+      <div className="AttributeBar">
+        {props.mods.map((m, i) => (
+          <Modification key={i} mod={m} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function TeamCard(props: {
   team: Team;
@@ -32,12 +45,16 @@ export default function TeamCard(props: {
           </Nav>
           <Tab.Content>
             <Tab.Pane eventKey="roster">
+              <TeamMods mods={props.team.mods} />
               <TeamRoster
                 onPlayerSelected={props.onPlayerSelected}
                 team={props.team}
               />
             </Tab.Pane>
-            <Tab.Pane eventKey="info">TODO</Tab.Pane>
+            <Tab.Pane eventKey="info">
+              <TeamMods mods={props.team.mods} />
+              TODO
+            </Tab.Pane>
             <Tab.Pane eventKey="ballpark">TODO</Tab.Pane>
             <Tab.Pane eventKey="feed">TODO</Tab.Pane>
           </Tab.Content>
